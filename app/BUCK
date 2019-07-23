@@ -1,0 +1,43 @@
+android_binary(
+	name = 'demo-app',
+	manifest = 'src/main/AndroidManifest.xml',
+	keystore = ':debug_keystore',
+	deps = [
+		':lib',
+	],
+)
+
+keystore(
+	name = 'debug_keystore',
+	store = 'debug.keystore',
+	properties = 'debug.keystore.properties',
+)
+
+android_resource(
+	name = 'res',
+	res = "src/main/res",
+	package = 'com.example.myapplication',
+)
+
+android_library(
+	name = 'lib',
+	srcs = glob(['src/main/java/*.kt']),
+	deps = [
+		':res',
+		':compat',
+		':compat_core',
+		':kotlin_std',
+		':kotlin_runtime',
+	],
+	language = 'kotlin',
+)
+
+android_prebuilt_aar(
+	name = 'compat',
+	aar = "libs/appcompat.aar",
+)
+
+android_prebuilt_aar(
+	name = 'compat_core',
+	aar = "libs/core.aar",
+)
