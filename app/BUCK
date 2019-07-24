@@ -1,13 +1,9 @@
 android_binary(
-	name = 'demo-app',
+	name = 'app',
 
 	manifest = 'src/main/AndroidManifest.xml',
 	manifest_entries = {
-            'version_code': 12,
-            'version_name': '2.0',
-            'min_sdk_version': 21,
-            'target_sdk_version': 28,
-            'debug_mode': True,
+            'min_sdk_version': 15,
         },
 
 	keystore = ':debug_keystore',
@@ -22,12 +18,6 @@ keystore(
 	properties = 'debug.keystore.properties',
 )
 
-android_resource(
-	name = 'res',
-	res = "src/main/res",
-	package = 'com.example.myapplication',
-)
-
 android_library(
 	name = 'lib',
 	srcs = glob(['src/main/java/*.kt']),
@@ -37,8 +27,12 @@ android_library(
 		':compat_core',
 	],
 	language = 'kotlin',
-	source = '8',
-    target = '8',
+)
+
+android_resource(
+	name = 'res',
+	res = "src/main/res",
+	package = 'com.example.myapplication',
 )
 
 android_prebuilt_aar(
