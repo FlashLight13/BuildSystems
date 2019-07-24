@@ -1,6 +1,15 @@
 android_binary(
 	name = 'demo-app',
+
 	manifest = 'src/main/AndroidManifest.xml',
+	manifest_entries = {
+            'version_code': 12,
+            'version_name': '2.0',
+            'min_sdk_version': 21,
+            'target_sdk_version': 28,
+            'debug_mode': True,
+        },
+
 	keystore = ':debug_keystore',
 	deps = [
 		':lib',
@@ -26,10 +35,10 @@ android_library(
 		':res',
 		':compat',
 		':compat_core',
-		':kotlin_std',
-		':kotlin_runtime',
 	],
 	language = 'kotlin',
+	source = '8',
+    target = '8',
 )
 
 android_prebuilt_aar(
