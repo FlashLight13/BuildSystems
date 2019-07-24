@@ -1,0 +1,39 @@
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_android_library")
+
+android_binary(
+    name = "app",
+
+    custom_package = "com.example.myapplication",
+    manifest = "src/main/AndroidManifest.xml",
+    deps = [
+        ":lib",
+    ],
+)
+
+kt_android_library(
+    name = "lib",
+    srcs = glob(["src/main/java/**/*"]),
+    deps = [
+        ":res",
+    ],
+)
+
+android_library(
+    name = "res",
+    resource_files = glob(["src/main/res/**/*"]),
+    manifest = "src/main/AndroidManifest.xml",
+    custom_package = "com.example.myapplication",
+)
+
+aar_import(
+    name = "appcompat",
+    aar = "libs/appcompat.aar",
+    deps = [
+        ":appcompat_core",
+    ]
+)
+
+aar_import(
+    name = "appcompat_core",
+    aar = "libs/core.aar",
+)
